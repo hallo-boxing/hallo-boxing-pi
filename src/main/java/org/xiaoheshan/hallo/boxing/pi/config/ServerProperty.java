@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author : _Chf
- * @since : 03-16-2018
+ * @since : 03-22-2018
  */
 @Component
 @lombok.Data
@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 public class ServerProperty {
 
     private String name;
-    private String ip;
-    private Integer port;
 
+    private String ip;
+
+    private Integer port;
 }

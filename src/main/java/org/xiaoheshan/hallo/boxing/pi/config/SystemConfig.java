@@ -12,7 +12,6 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  */
 @Configuration
 @EnableScheduling
-@EnableAspectJAutoProxy
 public class SystemConfig {
 
 }
