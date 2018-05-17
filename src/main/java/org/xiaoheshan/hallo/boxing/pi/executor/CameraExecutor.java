@@ -31,10 +31,12 @@ public class CameraExecutor implements IExecutor {
             return ERROR.getWithParam(CAMERA_PARAM_ERROR.getCode().toString());
         }
         ConsoleUtil.get().println("正在执行拍摄命令: " + Arrays.toString(params));
+        Integer imageId = null;
         try {
             String fileName = PHOTO_DIRECTORY + params[0] + JPG_SUFFIX;
             takePhoto(fileName);
-            if (!FileUploader.upload(fileName)) {
+            imageId = FileUploader.upload(fileName);
+            if (imageId == null) {
                 ConsoleUtil.get().println("上传照片发生错误");
                 return ERROR.getWithParam(CAMERA_UPLOAD_ERROR.getCode().toString());
             }
@@ -43,7 +45,7 @@ public class CameraExecutor implements IExecutor {
             return ERROR.getWithParam(SYSTEM_ERROR.getCode().toString());
         }
         ConsoleUtil.get().println("执行拍摄命令完成");
-        return OK.get();
+        return OK.getWithParam(imageId.toString());
     }
 
     private void takePhoto(String fileName) throws IOException, InterruptedException {
